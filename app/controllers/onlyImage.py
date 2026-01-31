@@ -35,7 +35,7 @@ def get_all_images(db: Session = Depends(get_db)):
         ImageResponse(
             id=img.id,
             filename=img.filename,
-            image_url=f"/images/{img.id}"
+            image_url=f"/onlyImage/{img.id}"
         )
         for img in images
     ]

@@ -1,10 +1,187 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Welcome to Dashboard</h1>
-    <p>You are logged in successfully 🎉</p>
-</body>
+<!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="logo">
+          <img src="/image/usthi foundation.jpeg" />
+          <span> ADMIN PANEL</span>
+          <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <ul class="menu">
+          <li onclick="openUpload('Photo')">📷 Photo Gallery</li>
+
+          <li onclick="openUpload('Program')">📅 Our Program</li>
+
+          <li onclick="openContactPage()">
+            📩 Contact Messages <span id="msgCount" class="msg-count">0</span>
+          </li>
+          <li onclick="openDonationPage()">
+            💰 Donation Details
+            <span id="donationCount" class="msg-count">0</span>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <header class="header">
+          <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+          <div class="nav-right">
+            <div class="profile" onclick="toggleDropdown()">
+              <img src="/image/usthi foundation.jpeg" />
+              <span>Admin</span> ▼
+              <div class="dropdown" id="dropdown">
+                <!-- <button>Profile</button> -->
+                <button onclick="logout()">Logout</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- STATS -->
+
+        <div class="stats">
+          <div>📷 Photos <span id="imgCount">0</span></div>
+          <div>📅 Our Program <span id="programCount">0</span></div>
+          <div>📰 Contact Messages <span id="contactCount">0</span></div>
+          <div>💰 Donation <span id="donationStatCount">0</span></div>
+        </div>
+
+        <!-- CARDS -->
+        <div class="cards">
+          <div class="card">
+            <h3>Manage Photo Gallery</h3>
+            <img src="/image/teo.jpeg" />
+            <button onclick="openUpload('Photo')">Add New Photo</button>
+            <button onclick="showGallery()">View Gallery</button>
+          </div>
+          <div class="card">
+            <h3>Our Program</h3>
+            <img src="/image/WhatsApp Image 2026-01-01 at 11.08.49 AM.jpeg" />
+
+            <button onclick="openUpload('Program')">Add Program</button>
+            <button onclick="showGallery()">Manage Program</button>
+          </div>
+          <div class="card">
+            <h3>Contact Message</h3>
+            <img src="/image/contact.png" />
+
+            <button onclick="openContactPage()">View Contact</button>
+          </div>
+          <div class="card">
+            <h3>Donation Details</h3>
+            <img src="/image/donation img.png" />
+
+            <button onclick="openDonationPage()">View Donation</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- sidebar pop up part -->
+    <!-- UPLOAD POPUP -->
+    <div class="upload-popup" id="uploadPopup">
+      <div class="upload-box">
+        <span class="upload-close" onclick="closeUpload()">✖</span>
+
+        <h2 id="uploadTitle"></h2>
+
+        <input
+          type="text"
+          id="eventTitle"
+          placeholder="Event heading / title"
+        />
+
+        <!-- FILE INPUT -->
+        <input type="file" id="uploadInput" />
+
+        <!-- EVENT DESCRIPTION -->
+        <textarea id="eventDesc" placeholder="Event description..."></textarea>
+
+        <button onclick="submitUpload()">Submit</button>
+      </div>
+    </div>
+
+    <!--  
+    new feature add now  -->
+    <!-- CONTACT ADMIN PAGE -->
+    <div class="contact-admin" id="contactAdmin">
+      <div class="contact-header">
+        <h2>Contact Messages</h2>
+        <button class="close-contact" onclick="closeContactPage()">✖</button>
+      </div>
+
+      <div class="contact-grid" id="contactGrid">
+        <!-- Messages will appear here -->
+      </div>
+    </div>
+
+    <!-- CONTACT MESSAGE POPUP -->
+    <div class="message-popup" id="messagePopup">
+      <div class="popup-box">
+        <span class="popup-close" onclick="closeMessagePopup()">✖</span>
+        <div id="popupDetails"></div>
+      </div>
+    </div>
+
+    
+    <!-- DONATION ADMIN PAGE -->
+    <div class="donation-admin" id="donationAdmin">
+      <div class="contact-header">
+        <h2>Donation Details</h2>
+        <button class="close-contact" onclick="closeDonationPage()">✖</button>
+      </div>
+
+      <!-- ✅ ADD DONATION FORM HERE -->
+      <div class="donation-form-box">
+        <h3>Add New Donation</h3>
+
+        <form id="donationForm">
+          <input type="text" id="name" placeholder="Donor Name" required />
+
+          <input type="tel" id="mobile" placeholder="Mobile Number" required />
+
+          <input type="text" id="utr" placeholder="UTR Number" required />
+
+          <!-- ✅ PAN FIELD -->
+          <input
+            type="text"
+            id="pan"
+            placeholder="PAN Number (Optional)"
+            maxlength="10"
+            style="text-transform: uppercase"
+          />
+
+          <input type="file" id="image" required />
+
+          <button type="submit">Submit Donation</button>
+        </form>
+
+        <hr style="margin: 20px 0" />
+      </div>
+
+      <!-- EXISTING GRID -->
+      <div class="donation-grid" id="donationGrid"></div>
+    </div>
+
+    <!-- <div class="donation-admin" id="donationAdmin">
+      <div class="contact-header">
+        <h2>Donation Details</h2>
+        <button class="close-contact" onclick="closeDonationPage()">✖</button>
+      </div>
+
+      <div class="donation-grid" id="donationGrid"></div>
+    </div> -->
+
+    <!-- DONATION POPUP -->
+    <div class="donation-popup" id="donationPopup">
+      <div class="popup-box">
+        <span class="popup-close" onclick="closeDonationPopup()">✖</span>
+        <div id="donationPopupDetails"></div>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
 </html>
